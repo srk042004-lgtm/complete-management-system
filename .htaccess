@@ -1,0 +1,9 @@
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /hotel_management_system/
+
+    RewriteRule ^public/ - [L]
+    RewriteRule ^(.*)$ public/$1 [R=302,L]
+</IfModule>

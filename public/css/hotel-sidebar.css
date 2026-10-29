@@ -1,0 +1,822 @@
+.hotel-sidebar {
+    position: fixed;
+    z-index: 9998;
+    inset: 0 auto 0 0;
+    display: flex;
+    width: 248px;
+    flex-direction: column;
+    gap: 0;
+    overflow-y: auto;
+    padding: 18px 13px;
+    background: #14283c;
+    color: #edf4fa;
+    box-shadow: 8px 0 24px rgba(14, 35, 54, .12);
+    transition: width .2s ease, transform .2s ease;
+}
+
+.hotel-topbar {
+    display: none;
+}
+
+.hotel-role-identity,
+.hotel-role-badge {
+    display: inline-flex;
+    align-items: center;
+}
+
+.hotel-role-identity {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 8px;
+    color: #d8e5f1;
+    font-size: .76rem;
+    font-weight: 700;
+}
+
+.hotel-role-badge {
+    gap: 6px;
+    padding: 5px 9px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    font-size: .69rem;
+    font-weight: 800;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.hotel-role-badge__dot {
+    width: 7px;
+    height: 7px;
+    flex: 0 0 7px;
+    border-radius: 50%;
+    background: currentColor;
+    animation: hotel-role-pulse 1.8s ease-in-out infinite;
+}
+
+.hotel-role-badge--admin {
+    border-color: rgba(251, 113, 133, .35);
+    background: rgba(159, 18, 57, .24);
+    color: #fecdd3;
+}
+
+.hotel-role-badge--owner {
+    border-color: rgba(196, 181, 253, .35);
+    background: rgba(109, 40, 217, .24);
+    color: #ddd6fe;
+}
+
+.hotel-role-badge--manager {
+    border-color: rgba(147, 197, 253, .35);
+    background: rgba(29, 78, 216, .24);
+    color: #bfdbfe;
+}
+
+.hotel-role-badge--receptionist {
+    border-color: rgba(94, 234, 212, .35);
+    background: rgba(13, 148, 136, .22);
+    color: #99f6e4;
+}
+
+.hotel-role-badge--housekeeping {
+    border-color: rgba(253, 230, 138, .35);
+    background: rgba(180, 83, 9, .24);
+    color: #fde68a;
+}
+
+.hotel-role-badge--default {
+    border-color: rgba(148, 163, 184, .35);
+    background: rgba(71, 85, 105, .3);
+    color: #e2e8f0;
+}
+
+@keyframes hotel-role-pulse {
+    50% { opacity: .45; transform: scale(.82); }
+}
+
+.hotel-sidebar[hidden],
+.hotel-topbar[hidden],
+.hotel-sidebar__mobile-open[hidden],
+.hotel-sidebar__scrim[hidden] {
+    display: none !important;
+}
+
+body.hotel-sidebar-page {
+    padding-left: 248px !important;
+}
+
+.hotel-sidebar__brand {
+    padding: 0 10px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, .13);
+}
+
+.hotel-sidebar__brand strong {
+    display: block;
+    color: #fff;
+    font-size: .82rem;
+    letter-spacing: .08em;
+}
+
+.hotel-sidebar__brand span {
+    display: block;
+    margin-top: 5px;
+    overflow-wrap: anywhere;
+    color: #afc2d4;
+    font-size: .75rem;
+}
+
+.hotel-sidebar__group-title {
+    margin: 17px 10px 7px;
+    color: #91a8bd;
+    font-size: .63rem;
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+
+.hotel-sidebar__links {
+    display: grid;
+    gap: 5px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.hotel-sidebar__link {
+    display: flex;
+    min-height: 39px;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    color: #d8e5f1 !important;
+    font-size: .81rem;
+    font-weight: 650;
+    text-decoration: none !important;
+    transition: background-color .16s ease, border-color .16s ease, color .16s ease;
+}
+
+.hotel-sidebar__link:hover,
+.hotel-sidebar__link:focus-visible {
+    background: #263c52;
+    color: #fff !important;
+}
+
+.hotel-sidebar__link[aria-current="page"] {
+    border-color: rgba(111, 205, 190, .18);
+    background: #1d4550;
+    color: #e6fffa !important;
+}
+
+.hotel-sidebar__icon {
+    display: inline-grid;
+    width: 20px;
+    flex: 0 0 20px;
+    place-items: center;
+    color: #79d7cb;
+    font-size: 1rem;
+    line-height: 1;
+}
+
+.hotel-sidebar__footer {
+    display: grid;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 15px;
+}
+
+.hotel-sidebar__control {
+    display: flex;
+    width: 100%;
+    min-height: 38px;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 7px 9px;
+    border: 1px solid rgba(255, 255, 255, .2);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, .08);
+    color: #edf4fa;
+    font: inherit;
+    font-size: .75rem;
+    font-weight: 700;
+    text-align: center;
+    cursor: pointer;
+}
+
+body.hotel-sidebar-page[data-hotel-sidebar-collapsed="true"] .hotel-sidebar__control {
+    justify-content: flex-start;
+    padding-left: 10px;
+    border-color: transparent;
+    background: transparent;
+    text-align: left;
+}
+
+body.hotel-sidebar-page[data-hotel-sidebar-collapsed="true"] .hotel-sidebar__control:hover,
+body.hotel-sidebar-page[data-hotel-sidebar-collapsed="true"] .hotel-sidebar__control:focus-visible {
+    border-color: transparent;
+    background: transparent;
+    color: #fff;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.hotel-sidebar__scrim {
+    display: none;
+}
+
+.hotel-sidebar__mobile-open {
+    display: none;
+}
+
+.hotel-sidebar__control:hover,
+.hotel-sidebar__control:focus-visible {
+    background: #263c52;
+    color: #fff;
+}
+
+.hotel-sidebar__theme-slot {
+    display: flex;
+    justify-content: center;
+}
+
+.hotel-logout-form {
+    display: block;
+    margin: 0;
+}
+
+.hotel-logout-button {
+    display: inline-flex;
+    width: 100%;
+    min-height: 38px;
+    align-items: center;
+    justify-content: center;
+    padding: 7px 10px;
+    border: 1px solid rgba(251, 113, 133, .38);
+    border-radius: 8px;
+    background: rgba(159, 18, 57, .2);
+    color: #ffe4e6;
+    font: inherit;
+    font-size: .75rem;
+    font-weight: 750;
+    cursor: pointer;
+    transition: border-color .16s ease, background-color .16s ease, color .16s ease;
+}
+
+.hotel-logout-button:hover,
+.hotel-logout-button:focus-visible {
+    border-color: rgba(251, 113, 133, .7);
+    background: rgba(159, 18, 57, .38);
+    color: #fff;
+}
+
+.hotel-topbar__actions .hotel-logout-form {
+    display: inline-flex;
+    flex: 0 0 auto;
+}
+
+.hotel-topbar__actions .hotel-logout-button {
+    width: auto;
+    min-height: 38px;
+    padding: 0 12px;
+}
+
+.hotel-topbar__actions .hotel-logout-button:hover,
+.hotel-topbar__actions .hotel-logout-button:focus-visible {
+    background: #9f1239;
+}
+
+.hotel-sidebar__mode-toggle,
+.hotel-topbar__mode-toggle {
+    min-height: 38px;
+    padding: 0 11px;
+    border: 1px solid rgba(255, 255, 255, .2);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, .08);
+    color: #edf4fa;
+    font: inherit;
+    font-size: .75rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.hotel-sidebar__mode-toggle:hover,
+.hotel-sidebar__mode-toggle:focus-visible,
+.hotel-topbar__mode-toggle:hover,
+.hotel-topbar__mode-toggle:focus-visible {
+    background: #263c52;
+    color: #fff;
+}
+
+.hotel-sidebar__theme-slot .theme-switcher {
+    position: static;
+    z-index: auto;
+    width: 100%;
+    min-height: 38px;
+    justify-content: center;
+    padding: 0 10px;
+    border-color: rgba(255, 255, 255, .2);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, .08);
+    box-shadow: none;
+    color: #edf4fa;
+    font-size: .75rem;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}
+
+.hotel-sidebar__theme-slot .theme-switcher:hover {
+    transform: none;
+    border-color: rgba(255, 255, 255, .32);
+    background: #263c52;
+    box-shadow: none;
+}
+
+body.hotel-sidebar-page[data-hotel-sidebar-collapsed="true"] {
+    padding-left: 72px !important;
+}
+
+body.hotel-sidebar-page[data-hotel-sidebar-collapsed="true"] .hotel-sidebar {
+    width: 72px;
+    padding-right: 8px;
+    padding-left: 8px;
+}
+
+body.hotel-sidebar-page[data-hotel-sidebar-collapsed="true"] .hotel-sidebar__brand {
+    display: none;
+}
+
+body.hotel-sidebar-page[data-hotel-sidebar-collapsed="true"] .hotel-sidebar__group-title,
+body.hotel-sidebar-page[data-hotel-sidebar-collapsed="true"] .hotel-sidebar__label,
+body.hotel-sidebar-page[data-hotel-sidebar-collapsed="true"] .hotel-sidebar__control-label,
+body.hotel-sidebar-page[data-hotel-sidebar-collapsed="true"] .hotel-sidebar__theme-slot .theme-switcher__label {
+    display: none;
+}
+
+body.hotel-sidebar-page[data-hotel-sidebar-collapsed="true"] .hotel-sidebar__link {
+    justify-content: center;
+    gap: 0;
+    padding-right: 0;
+    padding-left: 0;
+}
+
+body.hotel-sidebar-page[data-hotel-sidebar-collapsed="true"] .hotel-sidebar__icon {
+    width: 100%;
+    flex-basis: 100%;
+    font-size: 1.15rem;
+}
+
+body.hotel-sidebar-page[data-hotel-sidebar-collapsed="true"] .hotel-sidebar__control {
+    justify-content: center;
+    padding: 7px 0;
+    border-color: transparent;
+    background: transparent;
+}
+
+body.hotel-sidebar-page[data-hotel-sidebar-collapsed="true"] .hotel-sidebar__control::before {
+    content: "›";
+    display: inline-block;
+    font-size: 1.35rem;
+    line-height: 1;
+}
+
+body.hotel-sidebar-page[data-hotel-sidebar-collapsed="true"] .hotel-sidebar__theme-slot .theme-switcher {
+    width: 40px;
+    min-height: 38px;
+    padding: 0;
+}
+
+body.hotel-sidebar-page[data-hotel-sidebar-collapsed="true"] .hotel-sidebar__mode-toggle {
+    width: 40px;
+    overflow: hidden;
+    padding: 0;
+    font-size: 0;
+}
+
+body.hotel-sidebar-page[data-hotel-sidebar-collapsed="true"] .hotel-sidebar__mode-toggle::before {
+    content: "↔";
+    font-size: 1rem;
+}
+
+body.hotel-sidebar-page[data-hotel-sidebar-collapsed="true"] .hotel-logout-button {
+    width: 40px;
+    min-height: 38px;
+    overflow: hidden;
+    padding: 0;
+    font-size: 0;
+}
+
+body.hotel-sidebar-page[data-hotel-sidebar-collapsed="true"] .hotel-logout-button::before {
+    content: "↪";
+    font-size: 1rem;
+}
+
+body.hotel-sidebar-page[data-hotel-layout-mode="topbar"] {
+    padding-left: 0 !important;
+}
+
+body.hotel-sidebar-page[data-hotel-layout-mode="topbar"] .hotel-sidebar,
+body.hotel-sidebar-page[data-hotel-layout-mode="topbar"] .hotel-sidebar__mobile-open,
+body.hotel-sidebar-page[data-hotel-layout-mode="topbar"] .hotel-sidebar__scrim {
+    display: none !important;
+}
+
+body.hotel-sidebar-page[data-hotel-layout-mode="topbar"] .hotel-topbar {
+    display: block;
+    margin: 18px 18px 16px;
+    padding: 18px;
+    border: 1px solid #e1e9f0;
+    border-radius: 18px;
+    background: #fff;
+    box-shadow: 0 8px 22px rgba(11, 31, 56, .06);
+}
+
+.hotel-topbar__heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.hotel-topbar__heading > strong {
+    color: #8794a1;
+    font-size: .68rem;
+    letter-spacing: .12em;
+}
+
+.hotel-topbar__heading .hotel-topbar__actions {
+    gap: 7px;
+}
+
+.hotel-topbar__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.hotel-topbar__link {
+    display: flex;
+    min-height: 64px;
+    flex: 1 1 145px;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 14px;
+    border: 1px solid #d8e6f5;
+    border-radius: 13px;
+    background: #f5f9ff;
+    color: #183a5b !important;
+    font-size: .88rem;
+    font-weight: 700;
+    text-decoration: none !important;
+    text-align: center;
+    transition: background-color .18s ease, border-color .18s ease, color .18s ease;
+}
+
+.hotel-topbar__link:hover,
+.hotel-topbar__link:focus-visible,
+.hotel-topbar__link[aria-current="page"] {
+    border-color: #c4dbee;
+    background: #eaf4fc;
+    color: #17466d !important;
+}
+
+.hotel-topbar__actions,
+.hotel-topbar__theme-slot {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 8px;
+}
+
+.hotel-topbar__mode-toggle {
+    min-height: 32px;
+    padding: 0 9px;
+    border-color: #d8e6f5;
+    background: #f5f9ff;
+    color: #34526f;
+    font-size: .72rem;
+}
+
+.hotel-topbar__mode-toggle:hover,
+.hotel-topbar__mode-toggle:focus-visible {
+    border-color: #b6d0e2;
+    background: #e7f2fa;
+    color: #17466d;
+}
+
+.hotel-topbar__theme-slot .theme-switcher {
+    position: static;
+    min-height: 32px;
+    padding: 0 10px;
+}
+
+html[data-theme="dark"] body.hotel-sidebar-page[data-hotel-layout-mode="topbar"] .hotel-topbar {
+    border-color: var(--theme-border);
+    background: var(--theme-surface);
+}
+
+html[data-theme="dark"] body.hotel-sidebar-page[data-hotel-layout-mode="topbar"] .hotel-topbar__heading > strong {
+    color: var(--theme-muted);
+}
+
+html[data-theme="dark"] body.hotel-sidebar-page[data-hotel-layout-mode="topbar"] .hotel-topbar__link {
+    border-color: #3b4b5d;
+    background: #222f3e;
+    color: #e5edf6 !important;
+}
+
+html[data-theme="dark"] body.hotel-sidebar-page[data-hotel-layout-mode="topbar"] .hotel-topbar__link:hover,
+html[data-theme="dark"] body.hotel-sidebar-page[data-hotel-layout-mode="topbar"] .hotel-topbar__link:focus-visible,
+html[data-theme="dark"] body.hotel-sidebar-page[data-hotel-layout-mode="topbar"] .hotel-topbar__link[aria-current="page"] {
+    border-color: #598c87;
+    background: #2b464b;
+    color: #d8fff6 !important;
+}
+
+html[data-theme="dark"] body.hotel-sidebar-page[data-hotel-layout-mode="topbar"] .hotel-topbar__mode-toggle {
+    border-color: #506478;
+    background: #263a4a;
+    color: #edf4fa;
+}
+
+html[data-theme="dark"] body.hotel-sidebar-page[data-hotel-layout-mode="topbar"] .hotel-topbar__actions .hotel-logout-button {
+    border-color: #85404e;
+    background: #48272f;
+    color: #ffe4e6;
+}
+
+html[data-theme="dark"] body.hotel-sidebar-page[data-hotel-layout-mode="topbar"] .hotel-topbar__actions .hotel-logout-button:hover,
+html[data-theme="dark"] body.hotel-sidebar-page[data-hotel-layout-mode="topbar"] .hotel-topbar__actions .hotel-logout-button:focus-visible {
+    border-color: #be5365;
+    background: #702f3c;
+    color: #fff;
+}
+
+html[data-theme="dark"] .hotel-sidebar {
+    background: #111c29;
+    color: #edf4fa;
+    box-shadow: 8px 0 24px rgba(0, 0, 0, .24);
+}
+
+html[data-theme="dark"] .hotel-sidebar__link {
+    color: #dbe6f0 !important;
+}
+
+html[data-theme="dark"] .hotel-sidebar__link:hover,
+html[data-theme="dark"] .hotel-sidebar__link:focus-visible {
+    background: #263a4a;
+    color: #fff !important;
+}
+
+html[data-theme="dark"] .hotel-sidebar__link[aria-current="page"] {
+    border-color: #376a68;
+    background: #203d40;
+    color: #d8fff6 !important;
+}
+
+html[data-theme="dark"] .hotel-sidebar__group-title {
+    color: #a5b8c9;
+}
+
+html[data-theme="dark"] .hotel-sidebar__theme-slot .theme-switcher {
+    border-color: #506478 !important;
+    background: #263a4a !important;
+    box-shadow: none !important;
+    color: #edf4fa !important;
+}
+
+@media (max-width: 767.98px) {
+    body.hotel-sidebar-page,
+    body.hotel-sidebar-page[data-hotel-sidebar-collapsed="true"] {
+        padding-left: 0 !important;
+    }
+
+    .hotel-sidebar,
+    body.hotel-sidebar-page[data-hotel-sidebar-collapsed="true"] .hotel-sidebar {
+        width: 248px;
+        padding: 14px 12px;
+        transform: translateX(-100%);
+    }
+
+    body.hotel-sidebar-page[data-hotel-layout-mode="topbar"] .hotel-topbar {
+        margin: 12px;
+        padding: 14px;
+    }
+
+    body.hotel-sidebar-page[data-hotel-layout-mode="topbar"] .hotel-topbar__link {
+        min-height: 48px;
+        flex-basis: calc(50% - 4px);
+        padding: 8px;
+        font-size: .78rem;
+    }
+
+    body.hotel-sidebar-page[data-hotel-layout-mode="topbar"] .hotel-topbar__actions {
+        gap: 6px;
+    }
+
+    body.hotel-sidebar-page[data-hotel-sidebar-mobile-open="true"] .hotel-sidebar {
+        transform: translateX(0);
+    }
+
+    body.hotel-sidebar-page[data-hotel-sidebar-mobile-open="true"] .hotel-sidebar__brand strong,
+    body.hotel-sidebar-page[data-hotel-sidebar-mobile-open="true"] .hotel-sidebar__brand span,
+    body.hotel-sidebar-page[data-hotel-sidebar-mobile-open="true"] .hotel-sidebar__group-title,
+    body.hotel-sidebar-page[data-hotel-sidebar-mobile-open="true"] .hotel-sidebar__label {
+        display: block;
+    }
+
+    body.hotel-sidebar-page[data-hotel-sidebar-collapsed="true"][data-hotel-sidebar-mobile-open="true"] .hotel-sidebar__brand {
+        display: block;
+    }
+
+    body.hotel-sidebar-page[data-hotel-sidebar-mobile-open="true"] .hotel-sidebar__link {
+        justify-content: flex-start;
+        padding: 8px 10px;
+    }
+
+    .hotel-sidebar__scrim:not([hidden]) {
+        position: fixed;
+        z-index: 9997;
+        inset: 0;
+        display: block;
+        border: 0;
+        background: rgba(7, 18, 31, .48);
+    }
+
+    .hotel-sidebar__mobile-open:not([hidden]) {
+        position: fixed;
+        z-index: 10000;
+        top: 10px;
+        left: 10px;
+        display: inline-grid;
+        width: 38px;
+        height: 38px;
+        place-items: center;
+        border: 1px solid #cbd8e3;
+        border-radius: 9px;
+        background: #fff;
+        color: #173149;
+        box-shadow: 0 4px 14px rgba(15, 35, 55, .18);
+        font-size: 1.1rem;
+    }
+
+    .hotel-sidebar__brand {
+        padding: 0 10px 13px;
+    }
+
+    .hotel-sidebar__brand strong,
+    .hotel-sidebar__brand span,
+    .hotel-sidebar__group-title,
+    .hotel-sidebar__label {
+        display: block;
+    }
+
+    .hotel-sidebar__links {
+        gap: 4px;
+    }
+
+    .hotel-sidebar__link {
+        justify-content: flex-start;
+        min-height: 39px;
+        padding: 8px 10px;
+    }
+
+    .hotel-sidebar__footer {
+        gap: 6px;
+    }
+
+    .hotel-sidebar__control {
+        min-height: 36px;
+        padding: 7px 9px;
+        font-size: .75rem;
+    }
+
+    .hotel-sidebar__control::before {
+        content: none;
+    }
+
+    .hotel-sidebar__theme-slot .theme-switcher {
+        width: 100%;
+        min-height: 36px;
+        padding: 0 10px;
+    }
+
+    .hotel-sidebar__theme-slot .theme-switcher__label {
+        display: inline;
+    }
+
+    body.hotel-sidebar-page[data-hotel-sidebar-collapsed="true"] .hotel-sidebar__control {
+        justify-content: center;
+        padding: 7px 9px;
+    }
+
+    html[data-theme="dark"] .hotel-sidebar__mobile-open {
+        border-color: #506478;
+        background: #263a4a;
+        color: #edf4fa;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hotel-sidebar,
+    .hotel-sidebar__link {
+        transition: none;
+    }
+
+    .hotel-role-badge__dot {
+        animation: none;
+    }
+}
+
+/* Phone width: the navigation is a drawer. Closed by default, opened by the menu button.
+   !important is needed because an unconditional .hotel-sidebar transform rule in the theme styles would otherwise keep it on screen. */
+@media (max-width: 767.98px) {
+    body.hotel-sidebar-page .hotel-sidebar {
+        transform: translateX(-100%) !important;
+        box-shadow: none;
+    }
+
+    body.hotel-sidebar-page[data-hotel-sidebar-mobile-open="true"] .hotel-sidebar {
+        transform: translateX(0) !important;
+        box-shadow: 8px 0 24px rgba(14, 35, 54, .25);
+    }
+}
+
+/* Phone menu bar: sits above the page on small screens and holds the only button that opens the drawer. */
+.hotel-mobile-bar { display: none; }
+
+@media (max-width: 767.98px) {
+    body.hotel-sidebar-page[data-hotel-layout-mode="sidebar"] {
+        padding-top: 56px !important;
+    }
+
+    body.hotel-sidebar-page[data-hotel-layout-mode="sidebar"] .hotel-mobile-bar {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 9996;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        height: 56px;
+        padding: 0 14px;
+        border-bottom: 1px solid #e2e8f0;
+        background: #ffffff;
+        box-shadow: 0 1px 6px rgba(15, 23, 42, .06);
+    }
+
+    body.hotel-sidebar-page[data-hotel-layout-mode="sidebar"] .hotel-mobile-bar__menu {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        min-height: 40px;
+        padding: 0 14px;
+        border: 1px solid #99f6e4;
+        border-radius: 10px;
+        background: #f0fdfa;
+        color: #115e59;
+        font: 700 14px/1 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+        cursor: pointer;
+    }
+
+    body.hotel-sidebar-page[data-hotel-layout-mode="sidebar"] .hotel-mobile-bar__menu[hidden] {
+        display: none;
+    }
+
+    body.hotel-sidebar-page[data-hotel-layout-mode="sidebar"] .hotel-mobile-bar__title {
+        min-width: 0;
+        overflow: hidden;
+        color: #0f172a;
+        font-size: 14px;
+        font-weight: 700;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+
+html[data-theme="dark"] body.hotel-sidebar-page[data-hotel-layout-mode="sidebar"] .hotel-mobile-bar {
+    border-color: #334155;
+    background: #0f1b2a;
+}
+
+html[data-theme="dark"] body.hotel-sidebar-page[data-hotel-layout-mode="sidebar"] .hotel-mobile-bar__title {
+    color: #f1f5f9;
+}
+
+/* Phone width: tables scroll sideways inside their card instead of being cut off, and status pills wrap instead of overflowing. */
+@media (max-width: 767.98px) {
+    body.hotel-sidebar-page table {
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    body.hotel-sidebar-page .pill {
+        max-width: 100%;
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+}

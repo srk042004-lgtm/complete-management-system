@@ -1,0 +1,107 @@
+/* Consistent, subtle hover feedback for card-style content across the application. */
+:where(
+    .card,
+    .card-soft,
+    .hotel-card,
+    .metric-card,
+    .action-card,
+    .summary-card,
+    .panel-card,
+    .feature-card,
+    .mini-stat,
+    .kpi,
+    .room-tile,
+    .quick-card,
+    .module-card,
+    .reason-card,
+    .team-card,
+    .product,
+    .feature,
+    .why-card,
+    .benefit,
+    .prefer,
+    .contact-card,
+    .form-card,
+    .case-card,
+    .pricing-card,
+    .auth-card,
+    .registration-card,
+    .success-card,
+    .rounded-2xl.border,
+    .rounded-3xl.border
+) {
+    transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    :is(
+        .card,
+        .card-soft,
+        .hotel-card,
+        .metric-card,
+        .action-card,
+        .summary-card,
+        .panel-card,
+        .feature-card,
+        .mini-stat,
+        .kpi,
+        .room-tile,
+        .quick-card,
+        .module-card,
+        .reason-card,
+        .team-card,
+        .product,
+        .feature,
+        .why-card,
+        .benefit,
+        .prefer,
+        .contact-card,
+        .form-card,
+        .case-card,
+        .pricing-card,
+        .auth-card,
+        .registration-card,
+        .success-card,
+        .rounded-2xl.border,
+        .rounded-3xl.border
+    ):hover {
+        transform: translateY(-3px);
+        box-shadow: 0 14px 32px rgba(15, 35, 30, 0.12);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    :is(
+        .card,
+        .card-soft,
+        .hotel-card,
+        .metric-card,
+        .action-card,
+        .summary-card,
+        .panel-card,
+        .feature-card,
+        .mini-stat,
+        .kpi,
+        .room-tile,
+        .quick-card,
+        .module-card,
+        .reason-card,
+        .team-card,
+        .product,
+        .feature,
+        .why-card,
+        .benefit,
+        .prefer,
+        .contact-card,
+        .form-card,
+        .case-card,
+        .pricing-card,
+        .auth-card,
+        .registration-card,
+        .success-card,
+        .rounded-2xl.border,
+        .rounded-3xl.border
+    ) {
+        transition: none;
+    }
+}

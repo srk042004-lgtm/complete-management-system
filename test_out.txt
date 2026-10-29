@@ -1,0 +1,1 @@
+ERROR: SQLSTATE[HY000] [2006] MySQL server has gone away
